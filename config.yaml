@@ -1,0 +1,94 @@
+# my-pnpm-installer Configuration File
+# This file defines the list of global npm/pnpm packages to manage through the TUI
+
+packages:
+  # ============================================================================
+  # Scoped Package Example: @qwen-code/qwen-code
+  # Scoped packages use the @scope/package-name format
+  # ============================================================================
+  - name: Qwen Code CLI
+    # For scoped packages, include the full @scope/package-name in commands
+    install-command: pnpm install -g @qwen-code/qwen-code@latest
+    version-check-command: pnpm view @qwen-code/qwen-code version
+    # Some packages provide their own version command
+    local-version-command: qwen --version
+
+  - name: Claude Code CLI
+    install-command: pnpm install -g @anthropic-ai/claude-code
+    version-check-command: pnpm view @anthropic-ai/claude-code version
+    local-version-command: claude --version
+
+  - name: Gemini CLI
+    install-command: pnpm install -g @google/gemini-cli@latest
+    version-check-command: pnpm view @google/gemini-cli version
+    local-version-command: gemini --version
+
+  - name: claude-code-router
+    install-command: pnpm install -g @musistudio/claude-code-router
+    version-check-command: pnpm view @musistudio/claude-code-router version
+    local-version-command: ccr -v
+
+  - name: ccusage
+    install-command: pnpm install -g ccusage
+    version-check-command: pnpm view ccusage version
+    local-version-command: ccusage -v
+
+  - name: openclaw
+    install-command: pnpm add -g openclaw@beta
+    version-check-command: pnpm view openclaw@beta version
+    local-version-command: openclaw --version
+# ============================================================================
+# Configuration Notes:
+# ============================================================================
+# 
+# 1. Package Name (name):
+#    - Display name shown in the TUI
+#    - Can contain spaces and special characters
+#    - Should be descriptive and recognizable
+#    - Example: "TypeScript", "Qwen Code CLI", "claude-code-router"
+#
+# 2. Install Command (install-command):
+#    - Command executed when you press Enter in the TUI
+#    - Typically: npm install -g package@latest or pnpm install -g package@latest
+#    - For scoped packages: include full @scope/package-name
+#    - The @latest tag ensures you get the newest version
+#
+# 3. Version Check Command (version-check-command):
+#    - Queries the npm registry for the latest available version
+#    - Format: npm view package-name version
+#    - For scoped packages: npm view @scope/package-name version
+#    - Must return a version string (e.g., "5.3.2")
+#
+# 4. Local Version Command (local-version-command):
+#    - Checks the version installed on your system
+#    - Common patterns:
+#      * package-name --version
+#      * package-name -v
+#      * package-name version
+#    - Some packages have custom commands (e.g., tsc --version for TypeScript)
+#    - If the command fails, the package is considered not installed
+#
+# 5. Uniqueness:
+#    - Each package is identified by the combination of name + install-command
+#    - This allows you to have the same package name with different install methods
+#    - Example: "TypeScript" with npm and "TypeScript" with pnpm are treated as different packages
+#
+# 6. Scoped Packages:
+#    - Format: @scope/package-name (e.g., @angular/cli, @vue/cli)
+#    - Always include the @ symbol and scope in all commands
+#    - The CLI command may differ from the package name
+#      (e.g., @angular/cli installs the 'ng' command)
+#
+# 7. Using pnpm vs npm:
+#    - You can mix npm and pnpm commands in the same config
+#    - Example with pnpm:
+#      install-command: pnpm install -g package@latest
+#      version-check-command: pnpm view package version
+#    - Both package managers work with the same registry
+#
+# 8. Custom Registries:
+#    - If you use a private npm registry, configure it in ~/.npmrc
+#    - This tool respects your npm/pnpm configuration
+#    - No special configuration needed in this file
+#
+# ============================================================================
