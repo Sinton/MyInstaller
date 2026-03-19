@@ -1,0 +1,5 @@
+packages:
+  - name: test
+    display_name: Test Package
+    invalid yaml syntax [[[
+    missing proper structure

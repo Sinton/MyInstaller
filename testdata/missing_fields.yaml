@@ -1,0 +1,3 @@
+packages:
+  - name: Incomplete Package
+    # Missing install_command, version_check_command, and local_version_command

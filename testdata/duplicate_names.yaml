@@ -1,0 +1,9 @@
+packages:
+  - name: TypeScript
+    install-command: npm install -g typescript@latest
+    version-check-command: npm view typescript version
+    local-version-command: npm list -g typescript --depth=0
+  - name: TypeScript
+    install-command: npm install -g typescript@latest
+    version-check-command: npm view typescript version
+    local-version-command: npm list -g typescript --depth=0

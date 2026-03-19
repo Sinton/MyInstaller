@@ -1,0 +1,4 @@
+packages:
+  - name: test
+	display_name: Test Package with tabs
+    install-command: npm install -g test
